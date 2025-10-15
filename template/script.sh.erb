@@ -3,10 +3,13 @@
 module purge
 module restore
 
-module load <%= context.auto_modules_matlab %>
-module load project/ondemand
-module load app_matlab_proxy/0.23.1
+module load <%= context.auto_modules_ollama %>
+export OLLAMA_PORT=$port_ollama
+export OPEN_WEBUI_PORT=$port
+
+source ollama_start_helper
 
 cd $HOME
 
-matlab-proxy-app
+mkdir -p $OPEN_WEBUI_DATA_DIR
+apptainer exec --env "WEBUI_AUTH=False,ENABLE_PERSISTENT_CONFIG=False,OLLAMA_BASE_URL=http://0.0.0.0:$OLLAMA_PORT,PORT=$OPEN_WEBUI_PORT" --fakeroot --writable-tmpfs --bind $OPEN_WEBUI_DATA_DIR:/app/backend/data $OPEN_WEBUI_IMG bash /app/backend/start.sh

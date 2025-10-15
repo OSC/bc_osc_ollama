@@ -2,9 +2,6 @@
 
 [[ $(type -t module) == "function" ]] && export -f module
 
+port_ollama=$(find_port ${host})
 port=$(find_port ${host})
-
-export MWI_AUTH_TOKEN=$(create_passwd 32)
-password=$MWI_AUTH_TOKEN
-export MWI_BASE_URL="/node/$host/$port/"
-export MWI_APP_PORT=$port
+webui_url=
