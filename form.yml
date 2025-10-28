@@ -1,18 +1,17 @@
 ---
 cluster:
   - "cardinal"
-  - "ascend"
 form:
-  - auto_modules_matlab
+  - auto_modules_ollama
   - auto_accounts
   - bc_num_hours
   - num_cores
   - node_type
   - bc_email_on_started
 attributes:
-  auto_modules_matlab:
+  auto_modules_ollama:
     default: false
-    label: "MATLAB version"
+    label: "Ollama version"
   num_cores:
     widget: "number_field"
     label: "Number of cores"
