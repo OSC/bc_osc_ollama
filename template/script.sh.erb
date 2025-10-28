@@ -5,11 +5,16 @@ module restore
 
 module load <%= context.auto_modules_ollama %>
 export OLLAMA_PORT=$port_ollama
-export OPEN_WEBUI_PORT=$port
+export OPEN_WEBUI_PORT=$port_openwebui
 
 source ollama_start_helper
+source open_webui_start_helper
 
-cd $HOME
-
-mkdir -p $OPEN_WEBUI_DATA_DIR
-apptainer exec --env "WEBUI_AUTH=False,ENABLE_PERSISTENT_CONFIG=False,OLLAMA_BASE_URL=http://0.0.0.0:$OLLAMA_PORT,PORT=$OPEN_WEBUI_PORT" --fakeroot --writable-tmpfs --bind $OPEN_WEBUI_DATA_DIR:/app/backend/data $OPEN_WEBUI_IMG bash /app/backend/start.sh
+apptainer run --writable-tmpfs \
+    --env FORWARD_PORT=${port} \
+    --env FORWARD_HOST=${host} \
+    --env OPENWEBUI_PORT=${port_openwebui} \
+    -B ./templates:/etc/nginx/templates \
+    -B ./:/var/log/nginx/ \
+    -B ./conf:/etc/nginx/conf.d/ \
+    ./nginx-unprivileged_stable-alpine.sif

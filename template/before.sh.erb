@@ -2,5 +2,6 @@
 
 [[ $(type -t module) == "function" ]] && export -f module
 
-port_ollama=$(find_port ${host})
-port=$(find_port ${host})
+export port_ollama=$(find_port ${host})
+export port_openwebui=$(find_port ${host})
+export port=$(find_port ${host})
