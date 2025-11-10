@@ -1,7 +1,7 @@
 # Disable debuginfo as it causes issues with bundled gems that build libraries
 %global debug_package %{nil}
-%global repo_name bc_osc_matlab_server
-%global app_name bc_osc_matlab_server
+%global repo_name bc_osc_ollama
+%global app_name bc_osc_ollama
 %{!?package_version: %define package_version %{major}.%{minor}.%{patch}}
 %{!?package_release: %define package_release 1}
 %{!?git_tag: %define git_tag v%{package_version}}
