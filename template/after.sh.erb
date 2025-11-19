@@ -1,12 +1,1 @@
-#!/bin/bash
-
-# Wait for the Matlab server to start
-echo "Waiting for Matlab server to open port ${port}..."
-if wait_until_port_used "${host}:${port}" 600; then
-  echo "Discovered Matlab server listening on port ${port}!"
-else
-  echo "Timed out waiting for Matlab server to open port ${port}!"
-  clean_up 1
-fi
-sleep 2
-
+timeout 60s bash -c 'until [ $(curl -s -w %{http_code} -o /dev/null http://localhost:${OPEN_WEBUI_PORT}) -eq 200 ]; do sleep 1; done;'

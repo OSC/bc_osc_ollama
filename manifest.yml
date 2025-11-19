@@ -1,10 +1,9 @@
 ---
-name: MATLAB
+name: Ollama
 category: Interactive Apps
-subcategory: Servers
+subcategory: GUIs
 role: batch_connect
 description: |
-  This app will launch the [MATLAB] desktop in a web browser on the [Cardinal cluster].
+  This app will launch the [Ollama] desktop in a web browser on an OSC cluster.
 
-  [MATLAB]: https://www.mathworks.com/products/matlab.html
-  [Cardinal cluster]: https://www.osc.edu/resources/technical_support/supercomputers/cardinal
+  [Ollama]: https://ollama.com
