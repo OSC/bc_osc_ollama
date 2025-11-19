@@ -4,7 +4,6 @@ category: Interactive Apps
 subcategory: GUIs
 role: batch_connect
 description: |
-  This app will launch the [Ollama] desktop in a web browser on the [Cardinal cluster].
+  This app will launch the [Ollama] desktop in a web browser on an OSC cluster.
 
   [Ollama]: https://ollama.com
-  [Cardinal cluster]: https://www.osc.edu/resources/technical_support/supercomputers/cardinal
