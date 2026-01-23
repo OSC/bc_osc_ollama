@@ -4,14 +4,23 @@ cluster:
   - "cardinal"
 form:
   - auto_accounts
-  - auto_modules_ollama
+  - ollama_version
+  - ollama_models
   - num_cores
   - node_type
   - bc_num_hours
   - bc_email_on_started
 attributes:
-  auto_modules_ollama:
-    default: false
+  ollama_version:
+    widget: 'select'
+    options:
+      - ["0.13.1", "ollama/0.13.1"]
+  ollama_models:
+    widget: "path_selector"
+    label: "Ollama Models Directory"
+    show_hidden: false
+    show_files: false
+    help: "Select where to read/write models; Defaults to the unwritable public central model directory"
   num_cores:
     widget: "number_field"
     label: "Number of cores"

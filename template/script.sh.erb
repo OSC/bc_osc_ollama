@@ -36,8 +36,22 @@ fi
 #
 
 # Load the required environment
-module load <%= context.auto_modules_ollama %>
+module load <%= context.ollama_version %>
 
+# set up ollama_models directory
+OLLAMA_MODELS_OLD="$OLLAMA_MODELS"
+OLLAMA_MODELS_TMP=<%= context.ollama_models %>
+echo "OLLAMA_MODELS" "$OLLAMA_MODELS_TMP"
+
+mkdir -p "$OLLAMA_MODELS_TMP"
+
+if [ -w "$OLLAMA_MODELS_TMP" ] ; then
+  export OLLAMA_MODELS="$OLLAMA_MODELS_TMP"
+  echo "OLLAMA chose selected model directory"
+else
+  export OLLAMA_MODELS="$OLLAMA_MODELS_OLD"
+  echo "OLLAMA chose default public model directory"
+fi
 
 # Output debug info
 module list
